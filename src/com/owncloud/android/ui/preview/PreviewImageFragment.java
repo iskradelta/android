@@ -51,6 +51,7 @@ import com.owncloud.android.ui.fragment.FileFragment;
 import com.owncloud.android.utils.BitmapUtils;
 import com.owncloud.android.utils.DisplayUtils;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import third_parties.michaelOrtiz.TouchImageViewCustom;
 
 
@@ -339,6 +340,7 @@ public class PreviewImageFragment extends FileFragment {
         super.onPause();
     }
 
+    @SuppressFBWarnings("Dm")
     @Override
     public void onDestroy() {
         if (mBitmap != null) {

@@ -125,21 +125,15 @@ public class AccountActionsDialogFragment extends DialogFragment implements
      * @param menu the menu to be displayed
      * @return a filtered List of parcelables based on the menu
      */
-    private static List<MenuItemParcelable> calculateMenuParcel(Menu menu) {
+    private static List<MenuItemParcelable> calculateMenuParcel(final Menu menu) {
         int index = 0;
-        boolean hasNext = true;
-        List<MenuItemParcelable> itemList = new ArrayList<MenuItemParcelable>();
-        MenuParcelable menuParcelable = new MenuParcelable();
-        try {
-            while (hasNext) {
-                MenuItem item = menu.getItem(index);
-                if (item.isVisible()) {
-                    itemList.add(new MenuItemParcelable(item));
-                }
-                index++;
+        final List<MenuItemParcelable> itemList = new ArrayList<MenuItemParcelable>();
+        while (menu != null && menu.hasVisibleItems()) {
+            MenuItem item = menu.getItem(index);
+            if (item.isVisible()) {
+                itemList.add(new MenuItemParcelable(item));
             }
-        } catch (IndexOutOfBoundsException iobe) {
-            // reach the end of the item list
+            index++;
         }
 
         return itemList;

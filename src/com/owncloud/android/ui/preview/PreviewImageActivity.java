@@ -58,6 +58,8 @@ import com.owncloud.android.ui.activity.FileActivity;
 import com.owncloud.android.ui.activity.FileDisplayActivity;
 import com.owncloud.android.ui.fragment.FileFragment;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 
 /**
  *  Holds a swiping galley where image files contained in an ownCloud directory are shown
@@ -347,10 +349,11 @@ public class PreviewImageActivity extends FileActivity implements
     private void backToDisplayActivity() {
         finish();
     }
-    
+
+    @SuppressFBWarnings("DLS")
     @Override
     public void showDetails(OCFile file) {
-        Intent showDetailsIntent = new Intent(this, FileDisplayActivity.class);
+        final Intent showDetailsIntent = new Intent(this, FileDisplayActivity.class);
         showDetailsIntent.setAction(FileDisplayActivity.ACTION_DETAILS);
         showDetailsIntent.putExtra(FileActivity.EXTRA_FILE, file);
         showDetailsIntent.putExtra(FileActivity.EXTRA_ACCOUNT,
@@ -358,7 +361,6 @@ public class PreviewImageActivity extends FileActivity implements
         startActivity(showDetailsIntent);
         int pos = mPreviewImagePagerAdapter.getFilePosition(file);
         file = mPreviewImagePagerAdapter.getFileAt(pos);
-        
     }
 
     private void requestForDownload(OCFile file) {

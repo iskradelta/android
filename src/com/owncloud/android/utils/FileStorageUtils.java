@@ -47,6 +47,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Vector;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import third_parties.daveKoeller.AlphanumComparator;
 
 
@@ -280,6 +281,7 @@ public class FileStorageUtils {
         final int multiplier = mSortAscending ? 1 : -1;
         
         Collections.sort(files, new Comparator<OCFile>() {
+            @SuppressFBWarnings(value = "Bx", justification = "Would require stepping up API level")
             public int compare(OCFile o1, OCFile o2) {
                 if (o1.getModificationTimestamp() == 0 || o2.getModificationTimestamp() == 0){
                     return 0;
@@ -303,6 +305,7 @@ public class FileStorageUtils {
         List<File> files = new ArrayList<File>(Arrays.asList(filesArray));
 
         Collections.sort(files, new Comparator<File>() {
+            @SuppressFBWarnings(value = "Bx", justification = "Would require stepping up API level")
             public int compare(File o1, File o2) {
                 if (o1.lastModified() == 0 || o2.lastModified() == 0){
                     return 0;
@@ -324,6 +327,7 @@ public class FileStorageUtils {
         final int multiplier = mSortAscending ? 1 : -1;
 
         Collections.sort(files, new Comparator<OCFile>() {
+            @SuppressFBWarnings(value = "Bx", justification = "Would require stepping up API level")
             public int compare(OCFile o1, OCFile o2) {
                 if (o1.isFolder() && o2.isFolder()) {
                     Long obj1 = o1.getFileLength();
@@ -331,6 +335,7 @@ public class FileStorageUtils {
                 }
                 else if (o1.isFolder()) {
                     return -1;
+
                 } else if (o2.isFolder()) {
                     return 1;
                 } else if (o1.getFileLength() == 0 || o2.getFileLength() == 0){
@@ -354,6 +359,7 @@ public class FileStorageUtils {
         List<File> files = new ArrayList<File>(Arrays.asList(filesArray));
 
         Collections.sort(files, new Comparator<File>() {
+            @SuppressFBWarnings(value = "Bx", justification = "Would require stepping up API level")
             public int compare(File o1, File o2) {
                 if (o1.isDirectory() && o2.isDirectory()) {
                     Long obj1 = getFolderSize(o1);
@@ -380,6 +386,7 @@ public class FileStorageUtils {
      * Sorts list by Name
      * @param files     files to sort
      */
+    @SuppressFBWarnings(value = "Bx", justification = "Would require stepping up API level")
     public static Vector<OCFile> sortOCFilesByName(Vector<OCFile> files){
         final int multiplier = mSortAscending ? 1 : -1;
 

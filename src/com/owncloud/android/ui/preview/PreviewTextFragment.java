@@ -46,6 +46,7 @@ import com.owncloud.android.ui.fragment.FileFragment;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.lang.ref.WeakReference;
 import java.util.LinkedList;
@@ -174,12 +175,12 @@ public class PreviewTextFragment extends FileFragment {
             }
             final String location = (String) params[0];
 
-            FileInputStream inputStream = null;
+            InputStreamReader inputStream = null;
             Scanner sc = null;
             StringWriter source = new StringWriter();
             BufferedWriter bufferedWriter = new BufferedWriter(source);
             try {
-                inputStream = new FileInputStream(location);
+                inputStream = new InputStreamReader(new FileInputStream(location), "UTF8");
                 sc = new Scanner(inputStream);
                 while (sc.hasNextLine()) {
                     bufferedWriter.append(sc.nextLine());
