@@ -2,3 +2,6 @@
 	path = user_manual/ocdoc
 	url = https://github.com/nextcloud/documentation
 	branch = master
+[submodule "android-library"]
+	path = android-library
+	url = ./android-library
